@@ -6,18 +6,15 @@ conveyour-collection-stream is an node module/package that helps you stream coll
 **Collection Streams is a ConveYour add-on. Please reach out to support at conveyour.com for more info.** 
 
 ## Features
----
 - 💪 Automatic pagination / cursor management! No need to worry about subsequent API calls to get the next page!
 - Rawest format of ConveYour API data with minimal changes to data. 
 - Fine-tuned export timeframes
 
 ## Use Cases
----
 - export raw data about lessons, campaigns, events
 - stream changes in almost real-time to other systems (advanced)
 
 ## Bad Use Cases
----
 - Using this as a replacement for Webhooks. Yes, you can watch for changes but a ConveYour webhook might be a better solution. ConveYour has an option for global webhooks, special hooks for certain milestones (that you can customize), as well as an easy to implement segment.com integration.
 
 - As a source for running reports! This will be incredibly slow! Instead, transfer data into a tool like Rockset, SnowFlake, etc and then query from there.
@@ -27,7 +24,6 @@ conveyour-collection-stream is an node module/package that helps you stream coll
 - Record deletions are not included in the stream. We would like to support this at some point. 
 
 ## Requirements / Installation
----
 - node 18 (module support)
 - clone this repo
 - `npm install` to install depedencies

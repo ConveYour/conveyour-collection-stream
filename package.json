@@ -1,0 +1,30 @@
+{
+  "name": "conveyour-collection-stream",
+  "version": "1.0.0",
+  "description": "Stream records out of ConveYour. Helpful for ETL pipelines.",
+  "main": "index",
+  "type": "module",
+  "scripts": {
+    "stream": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConveYour/conveyour-collection-stream.git"
+  },
+  "keywords": [
+    "ConveYour",
+    "node",
+    "ETL"
+  ],
+  "author": "Stephen Rhyne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ConveYour/conveyour-collection-stream/issues"
+  },
+  "homepage": "https://github.com/ConveYour/conveyour-collection-stream#readme",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "lodash": "^4.17.21"
+  }
+}

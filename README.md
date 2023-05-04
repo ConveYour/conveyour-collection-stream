@@ -50,15 +50,14 @@ The ConveYour data collection (aka table) that you want to get results from..
 
 Available Collections.. 
 
-audit_logs - A log of user activites such as deleting a contact, starting an import, exportign records
-campaigns - entire campaign configuration
-contacts - almost all data stored on each contact
-events - feed of campaign, custom events for a learner
-lessons - entire JSON configuration for each lesson
-message_reports - a report of send, delivery, bounce events for each outbound send
-tags - used for tagging messages 
-triggers - entire JSON configuration of each trigger (part of campaign)
-trigger_logs - log of which trigger ran on which contact
+- campaigns: entire campaign configuration
+- contacts: almost all data stored on each contact
+- events: feed of campaign, custom events for a learner
+- lessons: entire JSON configuration for each lesson
+- message_reports: a report of send, delivery, bounce events for each outbound send
+- tags: used for tagging messages 
+- triggers: entire JSON configuration of each trigger (part of campaign)
+- trigger_logs: log of which trigger ran on which contact
 
 **--start_time: required**
 

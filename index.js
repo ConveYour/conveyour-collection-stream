@@ -9,10 +9,9 @@ const env = (key, _default) => {
     const value = process.env[key]
     return value === undefined ? _default : value
 }
-// const get = require('lodash/get');
-// const set = require('lodash/set');
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+// local development for ConveYour has self-signed cert which can be problematic
+// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 const option = (arg, def = null) => {
     return process.env[`npm_config_${arg}`] || def;

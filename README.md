@@ -3,6 +3,8 @@
 ## Description
 conveyour-collection-stream is an node module/package that helps you stream collection updates from a ConveYour account to other systems. 
 
+👉 [Check out this video](https://vimeo.com/823883732/44c3da8118)
+
 **Collection Streams is a ConveYour add-on. Please reach out to support at conveyour.com for more info.** 
 
 ## Features

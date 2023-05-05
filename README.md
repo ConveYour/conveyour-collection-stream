@@ -39,8 +39,10 @@ CONVEYOUR_TOKEN=yourtoken
 
 Examples...
 
-`npm run stream --collection=events --start_time='-1 minutes'  --fields='con_id,event'`
-`npm run stream --collection=contacts --start_time='-1 minutes' --watch | ./sendAlert`
+```
+npm run stream --collection=events --start_time='-1 minutes'  --fields='con_id,event'
+npm run stream --collection=contacts --start_time='-1 minutes' --watch | ./sendAlert`
+```
 
 ### Arguments
 

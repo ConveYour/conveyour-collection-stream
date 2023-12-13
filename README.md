@@ -11,7 +11,7 @@ conveyour-collection-stream is an node module/package that helps you stream coll
 - Fine-tuned export timeframes
 
 ## Use Cases
-- export raw data about lessons, campaigns, events
+- export raw data about lessons, campaigns, events, lesson transcripts
 - stream changes in almost real-time to other systems (advanced)
 
 ## Bad Use Cases
@@ -41,6 +41,7 @@ Examples...
 
 `npm run stream --collection=events --start_time='-1 minutes'  --fields='con_id,event'`
 `npm run stream --collection=contacts --start_time='-1 minutes' --watch | ./sendAlert`
+`npm run stream --collection=lesson_transcripts --start_time='-1 days'`
 
 ### Arguments
 
@@ -58,6 +59,7 @@ Available Collections..
 - tags: used for tagging messages 
 - triggers: entire JSON configuration of each trigger (part of campaign)
 - trigger_logs: log of which trigger ran on which contact
+- lesson_transcripts: Pull detailed lesson transcripts per contact. 
 
 **--start_time: required**
 
@@ -139,3 +141,46 @@ stream(config);
 
 ```
 
+## lesson_transcripts
+
+Lesson transcripts is a "hybrid" collection stream. It's actually doing the following under the hood. 
+
+```
+- for each contact.. 
+    - pull contact's transcripts
+    - foreach contact transcript in transcript
+        - callback()
+```
+
+You can stream lesson transcripts from the command line just like you do other collections.
+
+`npm run stream --collection=lesson_transcripts --start_time='-1 days'`
+
+Tip! You can access contact information in your fields selection like `contact.d.first_name`
+
+`npm run stream --start_time='-1 year' --collection=lesson_transcripts --fields=trigger,contact.d.first_name,contact._id`
+
+Note: `--start_time` on lesson_transcripts is when the CONTACT was last updated, not when there was a change in lesson_transcripts for any contact. This is a limitation we may address in the future. 
+
+### collections/lessonTranscripts.js
+
+Just like stream.js you can use lessonTranscripts.js directly within your node scripts.
+
+```
+import lessonTranscripts from './collections/lessonTranscripts.js';
+lessonTranscripts({
+    credentials: {
+        domain: process.env.CONVEYOUR_DOMAIN,
+        appkey : process.env.CONVEYOUR_APPKEY,
+        token: process.env.CONVEYOUR_TOKEN
+    },
+    params: {
+        'collection': 'lesson_transcripts',
+        'start_time': '-15 minutes',
+    }
+    callback: (record) => {
+        // fake function!
+        transferRecordToCorporateDataBase(record)
+    }
+});
+```

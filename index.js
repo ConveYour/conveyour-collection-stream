@@ -1,6 +1,7 @@
 import stream from './stream.js';
 import _ from 'lodash';
 import dotenv from 'dotenv'
+import lessonTranscripts from './collections/lessonTranscripts.js';
 
 dotenv.config()
 
@@ -68,7 +69,7 @@ const main = () => {
             token: env('token')
         },
         params,
-        callback: (record) => {
+        callback: async (record) => {
             const newRecord = mapper(record);
             const json = JSON.stringify(newRecord, null, stringifyFlag);
             console.log(json);
@@ -78,8 +79,11 @@ const main = () => {
         debug: !!option('debug', false),
     }
 
-    stream(config);
+    if( params.collection === 'lesson_transcripts' ){
+        return lessonTranscripts(config);
+    }
 
+    return stream(config);
 }
 
 main();

@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-const defaultCallback = (record) => {
-    const json = JSON.stringify(record);
-    console.log(json);
-}
-
 const unix = () => {
     return Math.floor(new Date().getTime() / 1000);
 }
@@ -29,9 +24,9 @@ const stream = async ({
     callback = null, 
     watch = false,
     interval = 60000,
-    debug = false
+    debug = false,
+    report = 'collectionStream'
 }) => {
-
     if( !credentials.validated && !hasAllKeys(credentials, credentialKeys.slice() ) ){
         console.error(`Missing one or more credentials{${credentialKeys.join(',')}}`);
         return false;
@@ -39,7 +34,8 @@ const stream = async ({
 
     credentials.validated = true;
 
-    const url = `https://${credentials.domain}/api/reports/collectionStream`;
+    const url = `https://${credentials.domain}/api/reports/${report}`;
+
     const headers = {
         'x-conveyour-appkey' : credentials.appkey,
         'x-conveyour-token' : credentials.token
@@ -52,6 +48,7 @@ const stream = async ({
         headers,
         params
     });
+
 
     const endTime = unix();
     
@@ -71,7 +68,9 @@ const stream = async ({
 
     callback = callback || (record => {});
 
-    results.forEach( callback )
+    for ( const result of results ){
+        await callback(result)
+    }
 
     const queryId = reportData.query_id;
     const nextCursor = reportData?.pagination?.next_cursor;
@@ -85,7 +84,9 @@ const stream = async ({
                 query_id : queryId,
                 cursor: nextCursor
             },
-            callback
+            callback,
+            debug,
+            report
         })
     }
 
@@ -102,7 +103,8 @@ const stream = async ({
             callback,
             watch,
             interval,
-            debug
+            debug,
+            report
         })
     }, interval);
 }

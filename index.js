@@ -77,6 +77,9 @@ const main = () => {
         watch: !!option('watch', false) || !!option('interval'),
         interval: +option('interval', 60000),
         debug: !!option('debug', false),
+        onComplete() {
+            console.log('done');
+        }
     }
 
     if( params.collection === 'lesson_transcripts' ){

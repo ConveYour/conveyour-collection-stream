@@ -137,7 +137,11 @@ const config = {
         // fake function!
         transferRecordToCorporateDataBase(record)
     },
-    watch: true //see cli arguments
+    watch: true //see cli arguments,
+
+    // Optionally pass a function that is called once the stream has completed. 
+    // Note, this will not run if you pass watch option. 
+    onComplete(){} 
 }
 stream(config);
 
@@ -183,6 +187,10 @@ lessonTranscripts({
     callback: (record) => {
         // fake function!
         transferRecordToCorporateDataBase(record)
-    }
+    },
+
+    // Optionally pass a function that is called once the stream has completed. 
+    // Note, this will not run if you pass watch option. 
+    onComplete(){} 
 });
 ```

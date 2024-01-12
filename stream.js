@@ -25,7 +25,8 @@ const stream = async ({
     watch = false,
     interval = 60000,
     debug = false,
-    report = 'collectionStream'
+    report = 'collectionStream',
+    onComplete = () => {}
 }) => {
     if( !credentials.validated && !hasAllKeys(credentials, credentialKeys.slice() ) ){
         console.error(`Missing one or more credentials{${credentialKeys.join(',')}}`);
@@ -90,7 +91,10 @@ const stream = async ({
         })
     }
 
+    
+
     if(!watch || !interval){
+        onComplete();
         return false;
     }
     

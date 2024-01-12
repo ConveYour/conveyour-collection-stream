@@ -15,6 +15,10 @@ const lessonTranscripts = async (config) => {
 
     const passedCallback = config.callback;
 
+    if( config.onComplete ){
+        delete config.onComplete;
+    }
+
     contactsConfig.callback = async (contact) => {
 
         if(config.debug){
